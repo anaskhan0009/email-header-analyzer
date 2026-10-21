@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Email Header Analyzer — Trace Delivery Path, Check SPF DKIM DMARC | Dinal Studios</title>
+<meta name="description" content="Free email header analyzer: trace the delivery path, spot spoofing red flags and check SPF, DKIM & DMARC results — private, in your browser.">
+<meta name="keywords" content="email header analyzer, analyze email headers, trace email origin, spf checker, dkim checker, dmarc checker, email spoofing detection, phishing email checker, received header analyzer, anti phishing tool">
+<meta name="author" content="Dinal Studios">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://anaskhan0009.github.io/email-header-analyzer/">
+<meta property="og:title" content="Free Email Header Analyzer — Trace Delivery Path, Check SPF DKIM DMARC | Dinal Studios">
+<meta property="og:description" content="Free email header analyzer: trace the delivery path, spot spoofing red flags and check SPF, DKIM & DMARC results — private, in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://anaskhan0009.github.io/email-header-analyzer/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Email Header Analyzer — Trace Delivery Path, Check SPF DKIM DMARC | Dinal Studios">
+<meta name="twitter:description" content="Free email header analyzer: trace the delivery path, spot spoofing red flags and check SPF, DKIM & DMARC results — private, in your browser.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Email Header Analyzer \u2014 SPF, DKIM, DMARC Checker",
+  "url": "https://anaskhan0009.github.io/email-header-analyzer/",
+  "applicationCategory": "SecurityApplication",
+  "operatingSystem": "Any (Web Browser)",
+  "browserRequirements": "Requires JavaScript. Requires HTML5.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Dinal Studios",
+    "url": "https://github.com/anaskhan0009"
+  },
+  "description": "Free online email header analyzer: trace the Received delivery path, detect From/Reply-To/Return-Path spoofing red flags, and read SPF, DKIM and DMARC results in plain language. Runs privately in the browser."
+}
+</script>
+<style>
+  * { box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+  body { margin: 0; background: #0a0f1a; color: #dbe4f3; }
+  header { background: radial-gradient(1000px 400px at 50% -80px, #14532d 0%, #0a0f1a 60%); padding: 46px 16px 30px; text-align: center; border-bottom: 1px solid #1d2b45; }
+  header h1 { margin: 0 0 8px; font-size: 32px; letter-spacing: .5px; }
+  header h1 span { color: #22c55e; }
+  header p { margin: 0; color: #93a5c4; font-size: 15px; }
+  .mono { font-family: 'Consolas', 'Courier New', monospace; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 22px 14px 46px; }
+  .card { background: #111a2c; border: 1px solid #1f2c47; border-radius: 14px; padding: 22px; margin-bottom: 20px; }
+  .card h2 { margin: 0 0 6px; font-size: 20px; color: #fff; }
+  .card h2 .tag { color: #22c55e; font-size: 13px; vertical-align: middle; }
+  .card .sub { color: #93a5c4; font-size: 13.5px; margin: 0 0 16px; }
+  textarea, input[type=text], input[type=password], select { width: 100%; padding: 12px; border-radius: 9px; border: 1px solid #2a3a5c; background: #0a0f1a; color: #fff; font-size: 15px; }
+  textarea { min-height: 90px; resize: vertical; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .btn { background: #22c55e; color: #06280f; border: none; padding: 11px 20px; border-radius: 9px; cursor: pointer; font-weight: 700; font-size: 14px; }
+  .btn:hover { background: #2fe673; }
+  .btn.dark { background: #1f2c47; color: #dbe4f3; }
+  .btn.dark:hover { background: #2a3c61; }
+  .out { background: #0a0f1a; border: 1px dashed #2a3a5c; border-radius: 9px; padding: 13px; font-size: 14px; word-break: break-all; min-height: 24px; }
+  .ok { color: #22c55e; font-weight: 800; }
+  .bad { color: #ef4444; font-weight: 800; }
+  .warn { color: #f59e0b; font-weight: 800; }
+  .terms { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 620px){ .terms { grid-template-columns: 1fr; } }
+  .term { background: #0a0f1a; border: 1px solid #1f2c47; border-radius: 10px; padding: 12px 14px; font-size: 13.5px; }
+  .term b { color: #fff; }
+  .term .cat { display: inline-block; font-size: 11px; font-weight: 700; color: #22c55e; border: 1px solid #14532d; border-radius: 12px; padding: 1px 8px; margin-left: 6px; vertical-align: middle; }
+  .rule { background: #2a1215; border: 1px solid #7f1d1d; color: #fecaca; border-radius: 10px; padding: 13px 15px; font-size: 14px; margin-top: 14px; }
+  .flagok { background: #0d2818; border: 1px solid #14532d; color: #bbf7d0; border-radius: 10px; padding: 13px 15px; font-size: 14px; margin-top: 12px; }
+  .flagwarn { background: #2b2108; border: 1px solid #92600a; color: #fde68a; border-radius: 10px; padding: 13px 15px; font-size: 14px; margin-top: 12px; }
+  .privacy { text-align: center; color: #64769a; font-size: 12.5px; margin-top: 4px; }
+  footer { text-align: center; color: #55688c; font-size: 12px; padding: 20px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  td, th { padding: 8px 10px; border-bottom: 1px solid #1f2c47; text-align: left; vertical-align: top; }
+  th { color: #93a5c4; font-weight: 600; }
+  .chip { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12.5px; font-weight: 800; margin: 2px 4px 2px 0; }
+  .chip.pass { background: #14532d; color: #86efac; }
+  .chip.fail { background: #7f1d1d; color: #fecaca; }
+  .chip.none { background: #713f12; color: #fde68a; }
+  .hop { border-left: 3px solid #22c55e; background: #0a0f1a; border-radius: 0 10px 10px 0; padding: 11px 14px; margin-bottom: 10px; font-size: 13.5px; }
+  .hop b { color: #fff; }
+  .hop .when { color: #93a5c4; font-size: 12.5px; }
+  .links a { display: inline-block; margin: 4px 6px 4px 0; padding: 8px 14px; background: #0a0f1a; border: 1px solid #2a3a5c; border-radius: 20px; color: #a9c6f5; text-decoration: none; font-size: 13.5px; }
+  .links a:hover { border-color: #22c55e; color: #fff; }
+  .opt { display: block; width: 100%; text-align: left; background: #0a0f1a; border: 1px solid #2a3a5c; color: #dbe4f3; padding: 12px 14px; border-radius: 9px; cursor: pointer; font-size: 14.5px; margin-bottom: 9px; }
+  .opt:hover { border-color: #22c55e; }
+  .opt.right { border-color: #22c55e; background: #0d2818; }
+  .opt.wrong { border-color: #ef4444; background: #2a1215; }
+  .opt:disabled { cursor: default; opacity: .92; }
+  .bar { height: 10px; background: #0a0f1a; border: 1px solid #2a3a5c; border-radius: 6px; overflow: hidden; }
+  .bar > div { height: 100%; background: #22c55e; width: 0%; transition: width .3s; }
+  .catbtn { background: #1f2c47; color: #dbe4f3; border: 1px solid #2a3a5c; padding: 8px 14px; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600; }
+  .catbtn.on { background: #22c55e; color: #06280f; border-color: #22c55e; }
+
+</style>
+</head>
+
+<body>
+<header>
+  <h1><span>✉</span> Email Header Analyzer</h1>
+  <p>Trace where an email really came from — delivery path, spoofing red flags, SPF · DKIM · DMARC — by Dinal Studios</p>
+</header>
+<div class="wrap">
+
+  <div class="card">
+    <h2>🔍 Analyze Email Headers <span class="tag">ANTI-PHISHING</span></h2>
+    <p class="sub">Open the suspicious email's <b>full headers</b> (Gmail: ⋮ → "Show original" · Outlook: File → Properties → Internet headers), copy everything, and paste it below. Analysis happens entirely on your device.</p>
+    <textarea id="hdrIn" class="mono" style="min-height:170px" placeholder="Paste the full raw email headers here…"></textarea>
+    <div class="row" style="margin-top:12px">
+      <button class="btn" onclick="analyze()">Analyze Headers</button>
+      <button class="btn dark" onclick="loadSample()">Load a Phishing Sample</button>
+      <button class="btn dark" onclick="document.getElementById('hdrIn').value='';document.getElementById('results').innerHTML=''">Clear</button>
+    </div>
+  </div>
+
+  <div id="results"></div>
+
+  <div class="card">
+    <h2>🎓 How to Read Email Headers Like a Defender</h2>
+    <p class="sub">Every email carries a hidden travel log. Here is what matters:</p>
+    <div class="terms">
+      <div class="term"><b>Received chain = the journey.</b> Each mail server stamps a <b>Received:</b> line. Reading them bottom-to-top shows the path from the sender's server to your inbox. A "bank" email whose first hop is a random home IP in another country is a forgery.</div>
+      <div class="term"><b>SPF — is this server allowed to send for the domain?</b> The receiving server checks whether the sending IP is on the domain's approved list. <b>spf=fail</b> means the sender was NOT authorized — a classic spoofing sign.</div>
+      <div class="term"><b>DKIM — is the message signed &amp; unaltered?</b> A cryptographic signature from the sender's domain. <b>dkim=pass</b> means the message is genuine from that domain and wasn't changed in transit. <b>dkim=none/fail</b> weakens trust.</div>
+      <div class="term"><b>DMARC — do From and the checks agree?</b> DMARC ties SPF/DKIM to the visible <b>From:</b> domain and tells receivers what to do on failure. <b>dmarc=fail</b> on an email claiming to be from a big brand is a strong phishing indicator.</div>
+      <div class="term"><b>Reply-To mismatch = reply hijack.</b> If the email claims to be from your bank but <b>Reply-To</b> points to a different, unrelated domain, your reply (and anything you send) goes to the attacker. Always compare it with <b>From</b>.</div>
+      <div class="term"><b>Return-Path mismatch = bounced identity.</b> The Return-Path is where bounces go. It often differs legitimately (newsletters use sending services), but combined with failed SPF/DMARC it confirms the From address was forged.</div>
+    </div>
+    <div class="rule">⚠️ <b>Golden rule:</b> headers prove where an email travelled — they don't make links safe. Even a "pass" email can contain a malicious link. Never log in from an email link; open the app or type the address yourself.</div>
+    <p class="privacy">🔒 100% private: headers are parsed locally in your browser. Nothing is uploaded, stored or shared.</p>
+  </div>
+  <div class="card">
+    <h2>🧰 More Free Tools by Dinal Studios</h2>
+    <p class="sub">Free cyber security tools that run 100% in your browser — no sign-up, no uploads, no tracking.</p>
+    <div class="links"><a href="https://anaskhan0009.github.io/phishing-awareness-trainer/">Phishing Awareness Training Game</a><a href="https://anaskhan0009.github.io/url-safety-checker/">URL &amp; Phishing Link Safety Checker</a><a href="https://anaskhan0009.github.io/cyber-security-toolkit/">Complete Cyber Security Toolkit</a><a href="https://anaskhan0009.github.io/personal-security-audit-checklist/">Personal Security Audit Checklist</a><a href="https://anaskhan0009.github.io/secure-message-encryptor/">Secure Message Encryptor (AES-256)</a><a href="https://anaskhan0009.github.io/cyber-security-quiz/">Cyber Security Quiz — Test Your Knowledge</a></div>
+  </div>
+
+  <footer>Built by Dinal Studios · Free online email header analyzer — trace email delivery path, SPF, DKIM &amp; DMARC checker · Educational and defensive use only</footer>
+</div>
+
+<script>
+function parseHeaders(raw){
+  var lines = raw.replace(/\r\n/g, "\n").split("\n"), headers = [];
+  for (var i = 0; i < lines.length; i++){
+    var line = lines[i];
+    if (!line.trim()) continue;
+    if (/^[ \t]/.test(line) && headers.length){ headers[headers.length - 1].value += " " + line.trim(); }
+    else {
+      var m = line.match(/^([^:]+):\s*(.*)$/);
+      if (m) headers.push({ name: m[1].trim(), value: m[2].trim() });
+    }
+  }
+  return headers;
+}
+function getAll(h, name){
+  var out = [];
+  for (var i = 0; i < h.length; i++) if (h[i].name.toLowerCase() === name.toLowerCase()) out.push(h[i].value);
+  return out;
+}
+function getOne(h, name){ var v = getAll(h, name); return v.length ? v[0] : null; }
+function domainOf(addr){
+  if (!addr) return null;
+  var m = addr.match(/@([A-Za-z0-9.\-]+)/);
+  return m ? m[1].toLowerCase() : null;
+}
+function esc(s){ return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+function chip(name, val){
+  var cls = (val === "pass") ? "pass" : (val === "fail" || val === "softfail") ? "fail" : "none";
+  return '<span class="chip ' + cls + '">' + name.toUpperCase() + " = " + esc(val.toUpperCase()) + "</span>";
+}
+
+function analyze(){
+  var raw = document.getElementById("hdrIn").value;
+  var box = document.getElementById("results");
+  if (!raw.trim()){ box.innerHTML = '<div class="card"><span class="bad">Paste some headers first — or load the phishing sample.</span></div>'; return; }
+  var h = parseHeaders(raw);
+  if (h.length < 3){ box.innerHTML = '<div class="card"><span class="bad">That doesn\'t look like a full header block. Make sure you copied the complete "original message" headers, not just the email body.</span></div>'; return; }
+
+  var html = "", flags = [], dangers = 0, warns = 0;
+
+  // ---- Authentication results
+  var authVals = getAll(h, "Authentication-Results").join(" ; ");
+  var found = {};
+  var re = /(spf|dkim|dmarc)\s*=\s*(pass|fail|none|neutral|softfail|temperror|permerror|bestguesspass)/gi, mm;
+  while ((mm = re.exec(authVals)) !== null){ if (!(mm[1].toLowerCase() in found)) found[mm[1].toLowerCase()] = mm[2].toLowerCase(); }
+  if (!("spf" in found)){
+    var rsp = getOne(h, "Received-SPF");
+    if (rsp){ var sm = rsp.match(/^\s*(pass|fail|none|neutral|softfail)/i); if (sm) found.spf = sm[1].toLowerCase(); }
+  }
+  html += '<div class="card"><h2>🛡️ Authentication Results</h2><p class="sub">How the receiving server judged this email\'s identity checks.</p>';
+  if (Object.keys(found).length){
+    html += '<div class="row">';
+    ["spf", "dkim", "dmarc"].forEach(function(k){ if (k in found) html += chip(k, found[k]); });
+    html += "</div>";
+    if (found.spf === "fail"){ flags.push(["red", "SPF FAILED — the sending server was not authorized to send for this domain. Strong spoofing sign."]); dangers++; }
+    if (found.dkim === "fail"){ flags.push(["red", "DKIM FAILED — the message signature is invalid; it was forged or altered in transit."]); dangers++; }
+    else if (!("dkim" in found) || found.dkim === "none"){ flags.push(["amber", "DKIM missing/none — the message carries no valid signature from the sender's domain."]); warns++; }
+    if (found.dmarc === "fail"){ flags.push(["red", "DMARC FAILED — the visible From domain does not align with SPF/DKIM. Treat as forged."]); dangers++; }
+    if (found.spf === "pass" && found.dkim === "pass" && found.dmarc === "pass"){ flags.push(["green", "SPF, DKIM and DMARC all PASS — the email genuinely comes from the From domain's infrastructure. (Links inside can still be dangerous.)"]); }
+  } else {
+    html += '<span class="warn">No Authentication-Results found.</span> <span style="color:#93a5c4">Some providers strip these, or the headers are incomplete. Identity cannot be confirmed — be extra careful.</span>';
+    warns++;
+  }
+  html += "</div>";
+
+  // ---- Identity comparison
+  var from = getOne(h, "From"), rp = getOne(h, "Return-Path"), rt = getOne(h, "Reply-To"), mid = getOne(h, "Message-ID"), subj = getOne(h, "Subject");
+  var dFrom = domainOf(from), dRp = domainOf(rp), dRt = domainOf(rt), dMid = domainOf(mid);
+  html += '<div class="card"><h2>🪪 Identity Check — Do the Addresses Agree?</h2>';
+  html += '<table><tr><th>Field</th><th>Value</th><th>Domain</th></tr>';
+  function rowHtml(label, val, dom){
+    return "<tr><td><b>" + label + "</b></td><td class=\"mono\">" + esc(val || "— not present —") + "</td><td class=\"mono\">" + esc(dom || "—") + "</td></tr>";
+  }
+  html += rowHtml("From", from, dFrom) + rowHtml("Reply-To", rt, dRt) + rowHtml("Return-Path", rp, dRp) + rowHtml("Message-ID", mid, dMid) + "</table>";
+  if (subj) html += '<p class="sub" style="margin-top:10px">Subject: <b style="color:#fff">' + esc(subj) + "</b></p>";
+  if (dRt && dFrom && dRt !== dFrom){ flags.push(["red", "REPLY-TO MISMATCH — replies go to " + dRt + " but the email claims to be from " + dFrom + ". Classic phishing reply-hijack."]); dangers++; }
+  if (dRp && dFrom && dRp !== dFrom){ flags.push(["amber", "RETURN-PATH MISMATCH — bounces go to " + dRp + ", not the From domain (" + dFrom + "). Legitimate for bulk senders, suspicious together with failed checks."]); warns++; }
+  if (dMid && dFrom && dMid !== dFrom){ flags.push(["amber", "MESSAGE-ID domain (" + dMid + ") differs from the From domain (" + dFrom + ") — worth a second look."]); warns++; }
+  html += "</div>";
+
+  // ---- Received chain (delivery path)
+  var rec = getAll(h, "Received");
+  html += '<div class="card"><h2>🗺️ Delivery Path — ' + rec.length + ' Hop' + (rec.length === 1 ? "" : "s") + '</h2><p class="sub">Read top → bottom: from the sender\'s first server to your inbox. The first hop is where the journey began — check whether it matches who the sender claims to be.</p>';
+  if (rec.length){
+    var path = rec.slice().reverse(); // oldest first = origin
+    for (var i = 0; i < path.length; i++){
+      var v = path[i];
+      var fm = v.match(/from\s+([^\s(]+)/i), bm = v.match(/by\s+([^\s(]+)/i), dt = v.split(";").pop().trim();
+      html += '<div class="hop"><b>Hop ' + (i + 1) + ":</b> from <span class=\"mono\">" + esc(fm ? fm[1] : "?") + "</span> → by <span class=\"mono\">" + esc(bm ? bm[1] : "?") + "</span>" + (dt ? '<div class="when">' + esc(dt) + "</div>" : "") + "</div>";
+    }
+  } else {
+    html += '<span class="warn">No Received headers found — the header block is incomplete.</span>';
+  }
+  html += "</div>";
+
+  // ---- Verdict
+  var verdict, vcls;
+  if (dangers > 0){ verdict = "🚨 HIGH RISK — " + dangers + " serious red flag(s) found. Do NOT click links, download attachments or reply. Report it as phishing and delete it."; vcls = "rule"; }
+  else if (warns > 0){ verdict = "⚠️ CAUTION — no hard failures, but " + warns + " thing(s) to double-check below. Verify any request through a separate channel before acting."; vcls = "flagwarn"; }
+  else { verdict = "✅ LOOKS CONSISTENT — identity checks line up. Stay alert anyway: a genuine account can be compromised, and links still need care."; vcls = "flagok"; }
+  html += '<div class="card"><h2>⚖️ Verdict</h2><div class="' + vcls + '" style="margin-top:0">' + verdict + "</div>";
+  for (var j = 0; j < flags.length; j++){
+    var f = flags[j];
+    var cls2 = f[0] === "red" ? "rule" : f[0] === "amber" ? "flagwarn" : "flagok";
+    html += '<div class="' + cls2 + '">' + esc(f[1]) + "</div>";
+  }
+  html += "</div>";
+
+  box.innerHTML = html;
+  box.scrollIntoView({ behavior: "smooth" });
+}
+
+function loadSample(){
+  var s = [
+    "Delivered-To: victim@gmail.com",
+    "Received: by 2002:a05:6638:2288:b0:412:9abc:def0 with SMTP id abc123c34;",
+    "        Tue, 14 Oct 2025 03:12:44 -0700 (PDT)",
+    "Received: from mail.secure-paypa1-verify.com (unknown [185.220.101.47])",
+    "        by mx.google.com with ESMTP id xyz789ab12;",
+    "        Tue, 14 Oct 2025 03:12:40 -0700 (PDT)",
+    "Received: from userpc (unknown [102.88.14.9])",
+    "        by mail.secure-paypa1-verify.com with SMTP id q1w2e3r4;",
+    "        Tue, 14 Oct 2025 11:12:38 +0200",
+    "Return-Path: <bounce@secure-paypa1-verify.com>",
+    "Received-SPF: fail (google.com: domain of bounce@secure-paypa1-verify.com does not designate 185.220.101.47 as permitted sender)",
+    "Authentication-Results: mx.google.com;",
+    "        spf=fail smtp.mailfrom=bounce@secure-paypa1-verify.com;",
+    "        dkim=none;",
+    "        dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=paypa1.com",
+    "From: \"PayPal Support\" <support@paypa1.com>",
+    "Reply-To: <harvest@free-mail-example.net>",
+    "Message-ID: <a1b2c3d4@secure-paypa1-verify.com>",
+    "Subject: URGENT: Your account has been limited - verify within 24 hours",
+    "Date: Tue, 14 Oct 2025 11:12:36 +0200",
+    "MIME-Version: 1.0",
+    "Content-Type: text/html; charset=UTF-8"
+  ].join("\n");
+  document.getElementById("hdrIn").value = s;
+  analyze();
+}
+</script>
+</body>
+</html>
